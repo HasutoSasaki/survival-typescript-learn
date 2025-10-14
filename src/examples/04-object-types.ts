@@ -36,3 +36,18 @@ let obj4: Readonly<{
     e: number;
     f: number;
 }>
+
+// const と readonlyの違い
+const x = { y: 1 }
+// x = { c: 1 } 代入はできないけど
+x.y = 2 // プロパティへの代入はできる
+
+// readonly 
+let obj5: { readonly x: number } = { x: 1 };
+// obj5.x = 2; プロパティへの代入は禁止だが
+obj5 = { x: 2 } // 代入はできる
+
+// const & readonlyを使うと完全に代入を防げる
+const obj6: { readonly x: number } = { x: 1 };
+// obj6 = { x: 2 } 
+// obj6.x = 2
