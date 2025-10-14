@@ -1,0 +1,28 @@
+{
+  "name": "survival-typescript-learn",
+  "version": "1.0.0",
+  "description": "[サバイバルTypeScript](https://typescriptbook.jp/)を学習するためのリポジトリです。",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasutoSasaki/survival-typescript-learn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HasutoSasaki/survival-typescript-learn/issues"
+  },
+  "homepage": "https://github.com/HasutoSasaki/survival-typescript-learn#readme",
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
