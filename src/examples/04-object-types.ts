@@ -51,3 +51,33 @@ obj5 = { x: 2 } // 代入はできる
 const obj6: { readonly x: number } = { x: 1 };
 // obj6 = { x: 2 } 
 // obj6.x = 2
+
+// ==== object loop
+const foo: Record<string, number> = { a: 1, b: 2, c: 3 };
+
+// プロトタイプにプロパティを追加（型エラーを回避するためにany型でアクセス）
+(Object.prototype as any).hi = "Hi!";
+
+console.log("\n=== for-in loop (prototypeのプロパティも含む) ===");
+for (const prop in foo) {
+    console.log(prop, foo[prop])
+}
+
+// hasOwnPropertyで自身のプロパティのみをチェック
+console.log("\n=== hasOwnProperty使用（自身のプロパティのみ） ===");
+for (const prop in foo) {
+    if (foo.hasOwnProperty(prop)) {
+        console.log(prop, foo[prop])
+    }
+}
+
+// Object.hasOwnを使う方法（より推奨）
+console.log("\n=== Object.hasOwn使用（自身のプロパティのみ） ===");
+for (const prop in foo) {
+    if (Object.hasOwn(foo, prop)) {
+        console.log(prop, foo[prop])
+    }
+}
+
+// クリーンアップ（他のコードに影響しないように）
+delete (Object.prototype as any).hi;
