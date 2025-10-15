@@ -37,3 +37,26 @@ class ProductId {
 
 const userId: UserId = new UserId("1")
 // const productId: ProductId = userId 代入エラーになる
+
+console.log("=== Class-based nominal typing ===");
+console.log("userId:", userId.getId());
+
+// =======================================
+// ブランド型（名前を変えて衝突を回避）
+// =======================================
+
+type BrandedUserId = {
+    __brand: "UserId"
+    id: number
+}
+
+type BrandedProductId = {
+    __brand: "ProductId"
+    id: number
+}
+
+const brandedUserId = { id: 1 } as BrandedUserId;
+// const brandedProductId: BrandedProductId = brandedUserId; // エラー: 型が互換性がない
+
+console.log("\n=== Brand type pattern ===");
+console.log("brandedUserId:", brandedUserId);
