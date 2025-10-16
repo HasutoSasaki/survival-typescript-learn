@@ -12,3 +12,9 @@ if (typeof character === "string") { // 型チェックを行うことで回避
 // 読み込み専用配列
 const readonlyNumbers: readonly number[] = [1, 2, 3]
 // readonlyNumbers.push(1) pushは存在しないとエラーになる
+
+// 破壊的操作を安全に使う方法
+const original = [1, 2, 3]
+const copy = [...original].reverse()
+console.log(original)
+console.log(copy)
