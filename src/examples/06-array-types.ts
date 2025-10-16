@@ -18,3 +18,19 @@ const original = [1, 2, 3]
 const copy = [...original].reverse()
 console.log(original)
 console.log(copy)
+
+// スプレッド構文では、深いコピーまでは防げない
+const arr = [1, [2, 3]]
+const backup = [...arr]
+if (Array.isArray(arr[1])) {
+    arr[1].push(4)
+    console.log(arr[1])
+    console.log(backup[1])
+}
+
+// concatを使った解決策
+const arr2 = [1, 2, 3]
+const backup2 = arr2.concat()
+arr2.push(4)
+console.log(arr2)
+console.log(backup2)
