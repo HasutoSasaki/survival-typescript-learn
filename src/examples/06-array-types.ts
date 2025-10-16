@@ -8,3 +8,7 @@ const character = abc[0]
 if (typeof character === "string") { // 型チェックを行うことで回避
     character.toUpperCase()
 }
+
+// 読み込み専用配列
+const readonlyNumbers: readonly number[] = [1, 2, 3]
+// readonlyNumbers.push(1) pushは存在しないとエラーになる
