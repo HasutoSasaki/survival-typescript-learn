@@ -33,3 +33,30 @@ function printStatus2(status: UploadStatus2) {
         console.log("不正なステータス：", status)
     }
 }
+
+
+// 数値リテラル型のディスクリミネータ
+type OkOrBadRequest =
+    | { statusCode: 200; value: string }
+    | { statusCode: 400; message: string }
+
+function handleResponse(x: OkOrBadRequest) {
+    if (x.statusCode === 200) {
+        console.log(x.value);
+    } else {
+        console.log(x.message)
+    }
+}
+
+// 論理型リテラル型のディスクリミネータ
+type OkOrNotOk =
+    | { isOk: true; value: string }
+    | { isOk: false; error: string }
+
+function handleStatus(x: OkOrNotOk) {
+    if (x.isOk) {
+        console.log(x.value)
+    } else {
+        console.log(x.error)
+    }
+}
