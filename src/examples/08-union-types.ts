@@ -84,3 +84,26 @@ function handleResultUndefined(result: ResultUndefined) {
         console.log(result.value)
     }
 }
+
+// ディスクリミネータを変数に代入する場合
+type Shape =
+    | { type: "circle"; color: string; radius: number }
+    | { type: "square"; color: string; size: number };
+
+function toCSS(shape: Shape) {
+    const { type, color } = shape;
+
+    switch (type) {
+        case "circle":
+            return {
+                background: color,
+                borderRadius: shape.radius,
+            }
+        case "square":
+            return {
+                background: color,
+                width: shape.size,
+                height: shape.size
+            }
+    }
+}
