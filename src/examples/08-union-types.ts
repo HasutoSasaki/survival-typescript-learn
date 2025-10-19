@@ -60,3 +60,27 @@ function handleStatus(x: OkOrNotOk) {
         console.log(x.error)
     }
 }
+
+type ResultNull =
+    | { error: null; value: string }
+    | { error: Error }
+
+function handleResultNull(result: ResultNull) {
+    if (result.error === null) {
+        console.log(result.value)
+    } else {
+        console.log(result.error)
+    }
+}
+
+type ResultUndefined =
+    | { error: undefined; value: string }
+    | { error: Error }
+
+function handleResultUndefined(result: ResultUndefined) {
+    if (result.error) {
+        console.log(result.error)
+    } else {
+        console.log(result.value)
+    }
+}
