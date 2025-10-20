@@ -15,3 +15,8 @@ const p: ThreeDimensionalPoint = {
     y: 1,
     z: 2
 }
+
+// プリミティブ型のインターセクション型
+type Never = string & number;
+
+const n: Never = "2"; // never：いかなる値も代入できない
