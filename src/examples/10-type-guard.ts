@@ -21,3 +21,34 @@ function getMonth2(date: string | Date) {
         console.log(date.getMonth() + 1);
     }
 }
+
+// in
+interface Wizard {
+    castMagic(): void
+}
+interface Swordsman {
+    slashSword(): void
+}
+
+function attack(player: Wizard | Swordsman) {
+    if ("castMagic" in player) {
+        player.castMagic();
+    } else {
+        player.slashSword();
+    }
+}
+
+// ユーザー定義の型ガード関数
+type Player = Wizard | Swordsman
+
+function isWizard(player: Player): player is Wizard {
+    return "castMagic" in player;
+}
+
+function attack2(player: Wizard | Swordsman) {
+    if (isWizard(player)) {
+        player.castMagic();
+    } else {
+        player.slashSword();
+    }
+}
