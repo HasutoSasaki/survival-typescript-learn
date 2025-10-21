@@ -14,3 +14,10 @@ function getMonth(date: string | Date | null) {
     }
 }
 
+// instanceof
+function getMonth2(date: string | Date) {
+    // 特定クラスのインスタンスであることを判定したい場合は、instanceof
+    if (date instanceof Date) {
+        console.log(date.getMonth() + 1);
+    }
+}
