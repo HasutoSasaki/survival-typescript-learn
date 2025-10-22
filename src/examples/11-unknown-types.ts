@@ -46,3 +46,25 @@ function isNumberArray(value: unknown): value is number[] {
     }
     return value.every((e) => typeof e === "number")
 }
+
+// unknown型をオブジェクトの型に絞り込む
+type Email = {
+    from: string;
+    to: string;
+    title: string;
+    subject: string;
+}
+function isEmail(value: unknown): value is Email {
+    if (typeof value !== "object" || value === null) {
+        return false
+    }
+    const email = value as Record<keyof Email, unknown>
+
+    if (typeof email.to !== "string") {
+        return false;
+    }
+    if (typeof email.title !== "string") {
+        return false;
+    }
+    return typeof email.subject === "string";
+}
