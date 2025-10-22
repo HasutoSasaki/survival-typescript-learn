@@ -19,3 +19,22 @@ const bool3: boolean = value3;
 value3.toFixed();
 const obj7: unknown = { name: "オブジェクト" }
 obj7.name;
+
+
+// 型の絞り込み
+const unknownValue: unknown = "";
+//　型ガード
+if (typeof unknownValue === "string") {
+    console.log(unknownValue.toUpperCase())
+}
+
+// 型ガード関数
+function isObject(value: unknown): value is object {
+    return typeof value === "object" && value !== null;
+}
+const unknownValue2: unknown = { a: 1, b: 2 }
+// 型ガード
+if (isObject(value)) {
+    // ここでは、valueをobject型として扱える
+    console.log(Object.keys(value))
+}
