@@ -68,3 +68,11 @@ function isEmail(value: unknown): value is Email {
     }
     return typeof email.subject === "string";
 }
+
+// any型の値をより安全にする
+const data: unknown = JSON.parse("..."); // そのままだとanyになる
+
+// 片アサーションの制約を回避
+// typescriptにその型だと認識させているに過ぎないので堅安全性の問題はある
+const str2 = "a";
+const num2 = str2 as unknown as number;
