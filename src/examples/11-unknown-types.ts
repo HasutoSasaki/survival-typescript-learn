@@ -38,3 +38,11 @@ if (isObject(value)) {
     // ここでは、valueをobject型として扱える
     console.log(Object.keys(value))
 }
+
+// unknown 型を配列型に絞り込む
+function isNumberArray(value: unknown): value is number[] {
+    if (!Array.isArray(value)) {
+        return false;
+    }
+    return value.every((e) => typeof e === "number")
+}
