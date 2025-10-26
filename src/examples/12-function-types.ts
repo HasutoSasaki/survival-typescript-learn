@@ -23,3 +23,15 @@ hello2(); // ❌
 const hello2 = function () {
     console.log("Hello World");
 }
+
+// Thisの指すもの
+function showThis() {
+    console.log(this); // ブラウザではWindow,DOMなどが入る
+}
+
+"use strict"
+function showThis2() {
+    console.log(this); // strict mode にするとundefinedになる
+    // undefined
+}
+
