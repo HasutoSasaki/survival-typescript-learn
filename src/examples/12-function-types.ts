@@ -71,4 +71,28 @@ const obj8 = { name: "foo" };
 console.log(showThis.bind(obj8)()); //obj を thisにバインドして、関数呼び出し
 console.log(showThis2.bind(obj8)()); // アロー関数の場合
 
+const taroYamada = {
+    firstName: "Taro",
+    lastName: "Yamada",
+    // 従来の関数
+    fullName1: function () {
+        return this.firstName + " " + this.lastName;
+    },
+    // アロー関数
+    fullName2: () => {
+        return this.firstName + " " + this.lastName;
+    }
+}
 
+console.log(taroYamada.fullName1()) // Taro Yamada
+console.log(taroYamada.fullName2()) // undefined undefined
+
+
+const taroYamada2 = {
+    firstName: "Taro",
+    lastName: "Yamada",
+    fullName: () => {
+        return taroYamada2.firstName + " " + taroYamada2.lastName;
+    }
+}
+console.log(taroYamada2) // Taro Yamada
