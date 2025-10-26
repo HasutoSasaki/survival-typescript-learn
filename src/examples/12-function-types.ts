@@ -18,20 +18,47 @@ function hello() {
     console.log("Hello World");
 }
 
-hello2(); // ❌
+// hello2(); // ❌
 
 const hello2 = function () {
     console.log("Hello World");
 }
 
 // Thisの指すもの
-function showThis() {
+function showThis(this: any) {
     console.log(this); // ブラウザではWindow,DOMなどが入る
 }
 
 "use strict"
-function showThis2() {
+function showThis2(this: undefined) {
     console.log(this); // strict mode にするとundefinedになる
     // undefined
 }
+
+// アロー関数の場合
+const oneSecond = 1000;
+
+// Timer型を定義
+type Timer = {
+    message: string;
+    start: () => void;
+}
+
+const timer: Timer = {
+    message: "時間です！",
+    start: function () {
+        console.log(this);
+
+        // 従来の関数（thisが変わるため、undefinedになる）
+        setTimeout(function (this: any) {
+            console.log(this?.message); // undefinedを安全に扱う
+        }, oneSecond);
+
+        // アロー関数（thisが保持される）
+        setTimeout(() => {
+            console.log(this.message) // ✅ 外側のthisを参照できる
+        }, oneSecond)
+    }
+}
+timer.start();
 
