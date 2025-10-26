@@ -30,7 +30,7 @@ function showThis(this: any) {
 }
 
 "use strict"
-function showThis2(this: undefined) {
+function showThis2(this: undefined | object) {
     console.log(this); // strict mode にするとundefinedになる
     // undefined
 }
@@ -39,6 +39,8 @@ function showThis2(this: undefined) {
 const oneSecond = 1000;
 
 // Timer型を定義
+console.log("=== Timer の例")
+
 type Timer = {
     message: string;
     start: () => void;
@@ -61,4 +63,12 @@ const timer: Timer = {
     }
 }
 timer.start();
+
+// call, apply, bindの振る舞い
+console.log("=== call,apply,bindの例")
+const obj8 = { name: "foo" };
+
+console.log(showThis.bind(obj8)()); //obj を thisにバインドして、関数呼び出し
+console.log(showThis2.bind(obj8)()); // アロー関数の場合
+
 
