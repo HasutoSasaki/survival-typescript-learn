@@ -96,3 +96,14 @@ const taroYamada2 = {
     }
 }
 console.log(taroYamada2) // Taro Yamada
+
+// 関数の巻き上げをアローで表現
+const main = () => {
+    step1()
+    step2()
+    step3()
+}
+const step1 = () => { }
+const step2 = () => { }
+const step3 = () => { }
+main()
