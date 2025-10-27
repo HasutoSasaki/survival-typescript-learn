@@ -107,3 +107,19 @@ const step1 = () => { }
 const step2 = () => { }
 const step3 = () => { }
 main()
+
+// voidとundefinedの関係
+function fn(): void { }
+function fnU(): undefined { return }
+
+// void は undefinedの上位型
+const v: void = undefined; // undefined型は void 型に代入できる
+const u: undefined = v; // void型 は undefined型に代入できない
+
+// この特徴は、関数の誤用に気づくきっかけを与えてくれる
+function f1(): void { }
+function f2(): undefined { return }
+
+let mayBeNumber: number | undefined;
+mayBeNumber = f1(); // コンパイルで誤りに気づける！
+mayBeNumber = f2(); // undefinedなので、誤りに気づけない。。
