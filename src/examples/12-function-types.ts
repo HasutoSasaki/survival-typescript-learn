@@ -123,3 +123,29 @@ function f2(): undefined { return }
 let mayBeNumber: number | undefined;
 mayBeNumber = f1(); // コンパイルで誤りに気づける！
 mayBeNumber = f2(); // undefinedなので、誤りに気づけない。。
+
+// 値渡し
+// JavaScript は全て値渡し
+function change(n: number) {
+    n = 2;
+}
+let n1 = 1;
+change(n1);
+console.log(n1);
+
+// オブジェクトは常に参照渡し
+const x1 = { n: 1 };
+let y = x1;
+y.n = 2;
+console.log(x) // nは2になっている
+y = { n: 2 }// 別のオブジェクトを代入した場合は影響は無くなる
+y.n = 3;
+console.log(x1) // 2のまま
+
+// 関数の場合注意が必要
+function change2(y: { n: number }) {
+    y.n = 2;
+}
+const x2 = { n: 1 };
+change2(x2);
+console.log(x2); // { n: 2} になっている
