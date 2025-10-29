@@ -174,3 +174,10 @@ function foo3(x = 2 * 2) { }
 function foo4(x = parseInt("1.5")) { }
 // 非同期処理は書けない
 async function foo5(x = await Promise.resolve(1)) { }
+
+// 残余引数/可変長引数（rest parameter)
+function func3(...params: number[]) { console.log(params) }
+function func4(param1: number, ...params: number[]) { console.log(param1, params) }
+// 例えば組み込みでは、Math.maxとかがある
+const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const highest = Math.max(...scores)
