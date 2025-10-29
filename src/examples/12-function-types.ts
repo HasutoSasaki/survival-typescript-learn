@@ -163,3 +163,14 @@ hello4(undefined) // undefinedを代入しなければいけない
 
 // オプション引数の後に、普通の引数は書けない
 function func(foo?: string, bar: string) { }
+
+// デフォルト引数
+function foo2(x = 1) { console.log(x) }
+foo2(undefined) // 1が出力される。デフォルト引数は、undefinedの際に適用されるため
+foo2(null) // そもそも型エラーは出るが、nullは出力される
+
+// 初期化処理もかけたりする
+function foo3(x = 2 * 2) { }
+function foo4(x = parseInt("1.5")) { }
+// 非同期処理は書けない
+async function foo5(x = await Promise.resolve(1)) { }
