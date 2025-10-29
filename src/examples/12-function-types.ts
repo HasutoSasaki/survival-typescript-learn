@@ -149,3 +149,17 @@ function change2(y: { n: number }) {
 const x2 = { n: 1 };
 change2(x2);
 console.log(x2); // { n: 2} になっている
+
+// オプション引数のあれこれ
+
+function hello3(person: string = "anonymous") { // デフォルトの値を用意するなら、引数に代入するのが一般的
+    return "Hello" + person
+}
+
+// T | undefined では引数なしで関数を呼べない
+function hello4(person: string | undefined) { }
+hello4() // 引数を一個は必要という警告が出る
+hello4(undefined) // undefinedを代入しなければいけない
+
+// オプション引数の後に、普通の引数は書けない
+function func(foo?: string, bar: string) { }
