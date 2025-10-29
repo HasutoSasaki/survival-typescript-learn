@@ -181,3 +181,19 @@ function func4(param1: number, ...params: number[]) { console.log(param1, params
 // 例えば組み込みでは、Math.maxとかがある
 const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const highest = Math.max(...scores)
+
+// 色々な分割代入
+function foo6({ a, b }: Record<string, number>) {
+    console.log(a, b) // 1, 2
+}
+foo6({ a: 1, b: 2 })
+
+function foo7({ a: x, b: y }: Record<string, number>) {
+    console.log(x, y) // 1, 2
+}
+foo7({ a: 1, b: 2 })
+
+function bar([a, b]: number[]) {
+    console.log(a, b)
+}
+bar([1, 2, 3]) // 1,2
