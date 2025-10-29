@@ -197,3 +197,32 @@ function bar([a, b]: number[]) {
     console.log(a, b)
 }
 bar([1, 2, 3]) // 1,2
+
+// 分割代入のデフォルト引数
+function foo8({ a = 0 }) {
+    console.log(a)
+}
+function bar2([a = 0]) {
+    console.log(a)
+}
+// 分割代入引数の全体の既定値
+function foo9({ a, b } = { a: 0, b: 0 }) {
+    console.log(a, b)
+}
+function bar3([a, b] = [0, 0]) {
+    console.log(a, b)
+}
+
+// 既定値は型注釈の後に記載する
+function foo10({ a }: { a?: number } = { a: 0 }) { }
+
+// 各プロパティの既定値と、引数全体の既定値。両方を指定することもできます。
+type Obj = { a?: number, b?: number }
+function foo11({ a = 0, b = 0 }: Obj = {}) {
+    console.log(a + b)
+}
+// 引数全体を省略すると各プロパティの既定値が使用されます。
+foo11() // 0
+foo11({}) // 0
+foo11({ a: 1 }) // 1
+foo11({ a: 1, b: 2 }) // 3
