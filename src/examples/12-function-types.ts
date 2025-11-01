@@ -226,3 +226,20 @@ foo11() // 0
 foo11({}) // 0
 foo11({ a: 1 }) // 1
 foo11({ a: 1, b: 2 }) // 3
+
+// options object pattern
+// 位置引数の関数
+function normalFunc(x: number, y: number, z: number) {
+    console.log(x, y, z)
+}
+
+// オブジェクト一つだけを引数に持つ関数
+function func5(options: { x: number, y: number, z: number }) {
+    console.log(options.x, options.y, options.z)
+}
+func5({ x: 1, y: 2, z: 3 })
+
+// 分割代入を使うともっとシンプルになる
+function func6({ x, y, z }: { x: number, y: number, z: number }) {
+    console.log(x, y, z)
+}
