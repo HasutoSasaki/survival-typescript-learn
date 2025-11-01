@@ -273,3 +273,34 @@ class Duck extends Animal { }
 function isUndefined(value: unknown): value is undefined {
     return typeof value === "number"
 }
+
+// 型述語
+// isDuck関数は命題animal is Duckについて変数animalを受けて真理値を返す関数となっています。
+// 型注釈に型述語を用いることは単に boolean 型を返す関数とは異なる効果がある。
+
+function typeGuard(x: unknown): x is number {
+    return typeof x === 'number';
+}
+
+function notTypeGuard(x: unknown): boolean {
+    return typeof x === 'number';
+}
+
+declare const input: number | string;
+
+// 型の絞り込みができる
+if (typeGuard(input)) {
+    input; // number
+} else {
+    input; // string
+}
+
+// 型の絞り込みができない
+if (notTypeGuard(input)) {
+    input; // string | number
+} else {
+    input; // string | number
+}
+
+// TypeScript 5.5 からは、返り値の注釈がない関数は、x is number という型述語で推論されるようになった
+// ただし、boolean を返す関数として型注釈した場合には、型ガードとしては利用できないことを注意する必要があります。
