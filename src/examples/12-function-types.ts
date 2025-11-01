@@ -259,3 +259,17 @@ type Options = {
 function func8({ x = 0, y = 0, z = 0 }: Options = {}) {
     console.log(x, y, z);
 }
+
+// ユーザー定義の型ガード
+// これはあくまでもその型であるとTypeScriptに解釈させるだけなので、JavaScriptとして正しいことは断言できません。
+function isDuck(animal: Animal): animal is Duck {
+    return animal instanceof Duck;
+}
+
+class Animal { }
+class Duck extends Animal { }
+
+// 明らかに誤っているのに警告を出してくれない
+function isUndefined(value: unknown): value is undefined {
+    return typeof value === "number"
+}
