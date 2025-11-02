@@ -322,3 +322,24 @@ const noApiKey = process.env.NO_API_KEY
 assertEnvVar(apiKey, "API_KEY")
 const client = new APIClient(apiKey)
 const clientB = new APIClient(noApiKey) // assert関数を通してない場合は、警告が出る
+
+    // 即時実行関数式 (IIFE)
+    (() => {
+        console.log("IIFE")
+    })();
+
+async function callAPIAandB() {
+    await (async () => {
+        const result = await fetch("api1");
+        if (typeof result === "string" && result !== "OK") {
+            console.log(result)
+        }
+    })()
+    await (async () => {
+        const result = await fetch("api2");
+        if (typeof result === "string" && result !== "Success") {
+            console.log(result)
+        }
+    })()
+
+}
