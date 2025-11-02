@@ -304,3 +304,21 @@ if (notTypeGuard(input)) {
 
 // TypeScript 5.5 からは、返り値の注釈がない関数は、x is number という型述語で推論されるようになった
 // ただし、boolean を返す関数として型注釈した場合には、型ガードとしては利用できないことを注意する必要があります。
+
+// アサーション関数 (assertion functions)
+// 環境変数のチェック
+function assertEnvVar(value: string | undefined, name: string): asserts value is string {
+    if (!value) {
+        throw new Error(`Environment variable ${name} is required`)
+    }
+}
+
+class APIClient {
+    constructor(apiKey: string) { }
+}
+
+const apiKey = process.env.API_KEY;
+const noApiKey = process.env.NO_API_KEY
+assertEnvVar(apiKey, "API_KEY")
+const client = new APIClient(apiKey)
+const clientB = new APIClient(noApiKey) // assert関数を通してない場合は、警告が出る
