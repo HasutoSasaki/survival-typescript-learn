@@ -343,3 +343,27 @@ async function callAPIAandB() {
     })()
 
 }
+
+// 通常のコールバック関数
+function greetNewUser(func: (name: string) => string) {
+    console.log(func('ご新規'))
+}
+function hello5(name: string) {
+    return `こんにちは！${name}さん！！`
+}
+function goodMorning(name: string) {
+    return `おはようございます！${name}さん！！`
+}
+
+greetNewUser(hello5) // こんにちは！ご新規さん！！
+greetNewUser(goodMorning) //　おはようございます！ご新規さん！！
+
+// コールバック関数の非同期な結果の受け取り
+import fs from "fs";
+
+fs.readFile("./user.txt", "utf-8", (err, data) => {
+    if (err) {
+        console.error(err);
+    }
+    console.log(data)
+})
