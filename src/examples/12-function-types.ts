@@ -435,3 +435,21 @@ function hello6(person: string | string[]): void {
         console.log(`Hello ${person.join(",")}`)
     }
 }
+
+// アロー関数とオーバーロード
+// 関数呼び出しシグネチャでHello型を定義
+type Hello = {
+    (person: string): void
+    (persons: string[]): void
+}
+
+const hello7: Hello = (person: string | string[]): void => {
+    if (typeof person === "string") {
+        console.log(`Hello ${person}`);
+    } else {
+        console.log(`Hello ${person.join(",")}`);
+    }
+}
+
+// 関数型とインターセクション型を用いる方法もある
+type Hello2 = ((person: string) => void) & ((persons: string[]) => void)
