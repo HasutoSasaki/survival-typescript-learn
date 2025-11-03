@@ -367,3 +367,19 @@ fs.readFile("./user.txt", "utf-8", (err, data) => {
     }
     console.log(data)
 })
+
+//　コールバック関数地獄
+fs.readFile("./a.txt", "utf-8", (err, data) => {
+    fs.readFile(data, "utf-8", (err, data) => {
+        fs.readFile(data, (err, data) => {
+            console.log(data)
+        })
+    })
+})
+
+// Promiseで解決
+import { promises } from "fs";
+promises.readFile("a.txt", "utf-8")
+    .then((data) => promises.readFile(data, "utf-8"))
+    .then((data) => promises.readFile(data, "utf-8"))
+    .then((data) => console.log(data))
