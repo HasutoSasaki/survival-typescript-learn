@@ -453,3 +453,14 @@ const hello7: Hello = (person: string | string[]): void => {
 
 // 関数型とインターセクション型を用いる方法もある
 type Hello2 = ((person: string) => void) & ((persons: string[]) => void)
+
+// 関数シグネチャは詳しい順に書く
+function func9(param: 1 | 2): 1 | 2; // 詳しい
+function func9(param: number): number; // そこそこ詳しい
+function func9(param: any): any; // 詳しくない
+function func9(param: any): any { }
+// ↑ anyみたいな詳しくないものを上にすると、詳しいものが採用されなくなって、全てanyになってしまう。
+
+const result1 = func9(1); // 1 | 2
+const result2 = func9(100); // number
+const result3 = func9("other"); // any
