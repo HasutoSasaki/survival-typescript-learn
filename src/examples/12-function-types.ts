@@ -379,7 +379,45 @@ fs.readFile("./a.txt", "utf-8", (err, data) => {
 
 // Promiseで解決
 import { promises } from "fs";
+
 promises.readFile("a.txt", "utf-8")
     .then((data) => promises.readFile(data, "utf-8"))
     .then((data) => promises.readFile(data, "utf-8"))
     .then((data) => console.log(data))
+
+// 同期型コールバック関数と非同期処理
+// Array.mapなどの同期型コールバック関数にPromiseを返す非同期関数を渡した場合はどうなるでしょうか？
+
+function doublePromise(n: number): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(n * 2)
+        }, 100)
+    })
+}
+(async function () {
+    const numbers = [1, 2, 3]
+    // promiseを解決する必要がある
+    const doubles = await Promise.all(numbers.map(doublePromise))
+
+    console.log(doubles) // [2,4,6]
+})()
+
+type User = {
+    name: string;
+};
+
+function greetUser(getUser: () => User) {
+    const user = getUser();
+    console.log(`Hello, ${user.name}`);
+}
+
+function fetchUserFromDB(): Promise<User> {
+    return new Promise<User>((resolve) => {
+        setTimeout(() => {
+            resolve({ name: "太郎" });
+        }, 1000);
+    });
+}
+
+greetUser(fetchUserFromDB); //　コールバック関数が非同期に対応してない場合は、promiseを渡せないというエラーがでる
