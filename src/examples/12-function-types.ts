@@ -421,3 +421,17 @@ function fetchUserFromDB(): Promise<User> {
 }
 
 greetUser(fetchUserFromDB); //　コールバック関数が非同期に対応してない場合は、promiseを渡せないというエラーがでる
+
+// オーバーロード関数
+
+// 関数シグネチャ部分
+function hello6(person: string): void;
+function hello6(persons: string[]): void
+
+function hello6(person: string | string[]): void {
+    if (typeof person === "string") {
+        console.log(`Hello ${person}`)
+    } else {
+        console.log(`Hello ${person.join(",")}`)
+    }
+}
