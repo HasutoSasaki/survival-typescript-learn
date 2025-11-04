@@ -19,3 +19,12 @@ function getUser(): Promise<User2> {
 getUser().then((user: User2) => {
     console.log(user)
 })
+
+// コールバックの戻り値として、S型または Promise<S> 型の値を返すと Promise<S> 型を返します
+const promise1: Promise<number> = Promise.resolve(1);
+const promise2: Promise<string> = promise1.then((value) => `${value}`);
+
+// Promise.prototype.then() メソッドチェーンができる
+const promise: Promise<boolean> = Promise.resolve("1")
+    .then((value) => Number(value)) // Promise<number> 型になる
+    .then((value) => value > 0) 
