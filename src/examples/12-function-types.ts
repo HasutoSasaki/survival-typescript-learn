@@ -464,3 +464,28 @@ function func9(param: any): any { }
 const result1 = func9(1); // 1 | 2
 const result2 = func9(100); // number
 const result3 = func9("other"); // any
+
+// オーバーロード以外も検討しよう
+// オーバーロードを使う場合
+function func10(one: number): void;
+function func10(one: number, two: number): void;
+function func10(one: number, two?: number): void { }
+func10(1, undefined);
+// オプション引数を使えば
+function func11(one: number, two?: number): void { }
+func11(1, undefined)
+
+// 代わりにユニオンでも良い
+function func12(x: string): void
+function func12(x: number): void
+function func12(x: string | number) { }
+// ユニオンの場合
+function func13(x: string | number) { }
+
+// ジェネリクスを使う
+function func14(x: boolean): boolean;
+function func14(x: number): number;
+function func14(x: string): string;
+function func14(x: boolean | string | number): boolean | string | number { return x }
+// ジェネリクスの場合
+function func15<T extends boolean | number | string>(x: T): T { return x }
