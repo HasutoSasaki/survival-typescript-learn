@@ -54,3 +54,64 @@ Promise.resolve(1)
 
 const promise3: Promise<number> = Promise.reject(new Error())
 const promise4: Promise<string> = promise3.catch((e) => e.message)
+
+function request1(): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(1);
+        }, 4000);
+    });
+}
+
+function request2(): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(2);
+        }, 2000);
+    });
+}
+
+function request3(): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(3);
+        }, 1000);
+    });
+}
+
+Promise.all([request1(), request2(), request3()]).then(([num1, num2, num3]) => {
+    console.log(num1, num2, num3);
+});
+
+function request4(): Promise<number> {
+    return new Promise((_resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("failed1"));
+        }, 4000);
+    });
+}
+
+function request5(): Promise<number> {
+    return new Promise((_resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("failed2"));
+        }, 2000);
+    });
+}
+
+function request6(): Promise<number> {
+    return new Promise((_resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("failed3"));
+        }, 1000);
+    });
+}
+
+Promise.all([request4(), request5(), request6()])
+    .then(([num1, num2, num3]) => {
+        console.log(num1, num2, num3);
+    })
+    .catch((e) => {
+        // 最も早く終わった例外が返る
+        console.log(e.message);
+    });
