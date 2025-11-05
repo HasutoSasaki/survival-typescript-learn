@@ -27,4 +27,30 @@ const promise2: Promise<string> = promise1.then((value) => `${value}`);
 // Promise.prototype.then() メソッドチェーンができる
 const promise: Promise<boolean> = Promise.resolve("1")
     .then((value) => Number(value)) // Promise<number> 型になる
-    .then((value) => value > 0) 
+    .then((value) => value > 0)
+
+// コールバック内で例外を投げるとそのPromiseは拒否されます。
+Promise.resolve(1)
+    .then(() => {
+        throw new Error();
+    })
+    .then(() => {
+        console.log('fulilled');
+    })
+    .catch(() => {
+        console.log("rejected")
+    })
+
+Promise.resolve(1)
+    .then(() => {
+        return Promise.reject(new Error())
+    })
+    .then(() => {
+        console.log("fulilled")
+    })
+    .catch(() => {
+        console.log("rejected")
+    })
+
+const promise3: Promise<number> = Promise.reject(new Error())
+const promise4: Promise<string> = promise3.catch((e) => e.message)
