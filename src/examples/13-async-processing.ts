@@ -161,3 +161,38 @@ function request11(): Promise<number> {
 Promise.race([request9(), request10(), request11()]).then((num) => {
     console.log(num) // @log: 3
 })
+
+// async関数の宣言
+async function requestAsync1(): Promise<number> {
+    return 1
+}
+
+const requestAsync2 = async function (): Promise<number> {
+    return 1
+}
+
+const requestAsync3 = async (): Promise<number> => {
+    return 1
+}
+
+// async メソッドとアクセス修飾子
+interface User3 {
+    id: string,
+    name: string,
+    age: number
+}
+async function findById(id: string): Promise<Omit<User3, "id">> {
+    return {
+        name: '',
+        age: 0
+    }
+}
+class UserRepository {
+    public async find(id: string): Promise<User3> {
+        const { name, age } = await findById(id);
+
+        return {
+            id, name, age
+        }
+    }
+}
