@@ -131,3 +131,33 @@ function request8(): Promise<number> {
 Promise.allSettled([request7(), request8()]).then((values) => {
     console.log(values)
 })
+
+// Promise.race
+// 一番初めに決定された Promise を返す
+function request9(): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(1)
+        }, 4000)
+    })
+}
+
+function request10(): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(2)
+        }, 2000)
+    })
+}
+
+function request11(): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(3)
+        }, 1000)
+    })
+}
+
+Promise.race([request9(), request10(), request11()]).then((num) => {
+    console.log(num) // @log: 3
+})
