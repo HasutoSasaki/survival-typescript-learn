@@ -115,3 +115,19 @@ Promise.all([request4(), request5(), request6()])
         // 最も早く終わった例外が返る
         console.log(e.message);
     });
+
+
+
+// Promise.allSettled 
+// 履行/拒否に関わらず全て待ち受ける
+function request7(): Promise<number> {
+    return Promise.resolve(1)
+}
+
+function request8(): Promise<number> {
+    return Promise.reject(new Error("failed"))
+}
+
+Promise.allSettled([request7(), request8()]).then((values) => {
+    console.log(values)
+})
