@@ -196,3 +196,22 @@ class UserRepository {
         }
     }
 }
+
+// await の注意点
+// awaitは基本的にasync関数の中でしか使えません
+function request12(): Promise<string> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('hello')
+        }, 1000)
+    })
+}
+// この書き方はできない
+// const result = await request12();
+// console.log(result)
+
+async function main() {
+    const result = await request12()
+    console.log(result) // @log: "Hello"
+}
+main();
