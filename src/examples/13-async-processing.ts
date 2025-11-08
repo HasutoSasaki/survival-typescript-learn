@@ -215,3 +215,21 @@ async function main() {
     console.log(result) // @log: "Hello"
 }
 main();
+
+// Promiseを直接awaitする
+async function main2() {
+    await new Promise((resolve) => {
+        setTimeout(() => resolve, 1000)
+    })
+}
+
+// await した時の型注釈
+async function request14(): Promise<string> {
+    return "hello"
+}
+
+async function main3() {
+    // stringになる
+    const result = await request14();
+    console.log(result) // @log: "hello"
+}
