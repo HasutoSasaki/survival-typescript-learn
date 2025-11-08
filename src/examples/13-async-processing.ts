@@ -233,3 +233,26 @@ async function main3() {
     const result = await request14();
     console.log(result) // @log: "hello"
 }
+
+// then-catch を try-catch に書き換える
+async function request15(): Promise<string> {
+    return "hello"
+}
+
+function main4() {
+    request15()
+        .then((result) => {
+            console.log(result) //@log: hello
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+async function main5() {
+    try {
+        const result = await request15()
+        console.log(result)// @log: hello
+    } catch (error: unknown) {
+        console.log(error)
+    }
+}
