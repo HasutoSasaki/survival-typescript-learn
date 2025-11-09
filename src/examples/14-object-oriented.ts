@@ -15,3 +15,9 @@ class Animal {
         console.log(`${this.name} moved ${distanceInMeters}m.`)
     }
 }
+
+const gorilla = new Animal("ゴリラ");
+gorilla.move(10);
+"ゴリラ moved 10m."
+gorilla.name = "ゴリラゴリラ";
+gorilla.move(20);
