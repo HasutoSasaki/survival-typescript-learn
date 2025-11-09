@@ -256,3 +256,56 @@ async function main5() {
         console.log(error)
     }
 }
+
+// 拒否された Promise をreturn するとき
+// return の前に await する
+async function request16(): Promise<unknown> {
+    try {
+        // return await とすることでcatchで例外を捕捉できる
+        return await request16()
+    } catch {
+        console.log("error");
+        // @log: error
+    } finally {
+        console.log("finally")
+        // @log: finally
+    }
+}
+
+main()
+    .then(() => {
+        console.log("then")
+        // @log: then
+    })
+    .catch(() => {
+        console.log("catch")
+    })
+
+// このような例であれば表示されるものは、error, finally, then が表示されます。
+
+// ただし、拒否されたPromiseをそのまま関数の戻り値にしてしまうと拒否されたまま呼び出し元に戻されます。
+function request17(): Promise<unknown> {
+    throw new Error("error");
+}
+
+// try -> finally -> return -> catch()
+async function main6(): Promise<unknown> {
+    try {
+        return request17()
+    } catch {
+        console.log("error")
+    } finally {
+        console.log("finally")
+        // @log: finally
+    }
+}
+
+main6()
+    .then(() => {
+        console.log("then")
+    })
+    .catch(() => {
+        console.log("catch")
+        // @log: catch
+    })
+// このような例では、finally, catch が表示されます
