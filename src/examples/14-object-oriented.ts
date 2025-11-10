@@ -48,3 +48,24 @@ class Gorilla extends Animal2 {
 
 const fastGorilla = new Gorilla("速いゴリラ")
 fastGorilla.move(10) // 速いゴリラ moved 100m.
+
+// private
+class Animal3 {
+    public name: string;
+
+    public constructor(theName: string) {
+        this.name = theName;
+    }
+
+    // public から　private に変更
+    private move(distanceInMeters: number) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`)
+    }
+}
+
+class Gorilla2 extends Animal3 {
+    move(distanceInMeters: number) {
+        super.move(distanceInMeters * 10) // private メソッドにはアクセスできいない
+    }
+}
+// private メソッドの多くの使い方としては、クラス内の長いコードを機能別に分ける時に利用します。
