@@ -69,3 +69,41 @@ class Gorilla2 extends Animal3 {
     }
 }
 // private メソッドの多くの使い方としては、クラス内の長いコードを機能別に分ける時に利用します。
+
+// constructor shorthand
+class ConstructorInAccessModifier {
+    constructor(
+        arg0: number,
+        public arg1: number,
+        protected arg2: number,
+        private arg3: number
+    ) {
+        console.log({ arg0, arg1, arg2, arg3 })
+    }
+}
+
+class ConstructorOutAccessModifier {
+    public arg1: number;
+    protected arg2: number;
+    private arg3: number;
+    constructor(arg0: number, arg1: number, arg2: number, arg3: number) {
+        this.arg1 = arg1;
+        this.arg2 = arg2;
+        this.arg3 = arg3;
+        console.log({ arg0, arg1, arg2, arg3 })
+    }
+}
+
+const InAccess = new ConstructorInAccessModifier(1, 2, 3, 4)
+InAccess.arg0;
+InAccess.arg1;
+InAccess.arg2;
+InAccess.arg3;
+
+const outAccess = new ConstructorOutAccessModifier(1, 2, 3, 4)
+outAccess.arg0
+outAccess.arg1
+outAccess.arg2
+outAccess.arg3
+// public のarg1のみアクセス可能です。どちらのクラスも同様
+// つまり、コンストラクタの引数のアクセス修飾子はプロパティ宣言の省略をしてくれるだけにすぎません。
