@@ -107,3 +107,10 @@ outAccess.arg2
 outAccess.arg3
 // public のarg1のみアクセス可能です。どちらのクラスも同様
 // つまり、コンストラクタの引数のアクセス修飾子はプロパティ宣言の省略をしてくれるだけにすぎません。
+
+// static field
+class SomeClass {
+    static field: number = 123;
+    static readonly readVal: number; // readonly修飾子をつけると読み取り専用になります
+}
+console.log(SomeClass.field) // @log: 123
