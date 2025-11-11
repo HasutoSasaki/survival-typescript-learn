@@ -114,3 +114,13 @@ class SomeClass {
     static readonly readVal: number; // readonly修飾子をつけると読み取り専用になります
 }
 console.log(SomeClass.field) // @log: 123
+
+// static method
+class SomeClass2 {
+    static doSomething() {
+    }
+    // アクセス修飾子を組み合わせられる
+    private static privateMethod() {
+    }
+}
+SomeClass2.doSomething()
