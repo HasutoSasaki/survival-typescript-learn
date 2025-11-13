@@ -124,3 +124,49 @@ class SomeClass2 {
     }
 }
 SomeClass2.doSomething()
+
+// メソッド戻り値の this型とメソッドチェーン
+// fluent interface
+
+class Operator {
+    protected value: number;
+
+    public constructor(value: number) {
+        this.value = value
+        return this
+    }
+
+    public sum(value: number) {
+        this.value += value
+        return this
+    }
+
+    public subtract(value: number) {
+        this.value -= value
+        return this
+    }
+
+    public multiply(value: number) {
+        this.value *= value
+        return this
+    }
+
+    public divide(value: number) {
+        this.value /= value
+        return this
+    }
+}
+
+class NewOperator extends Operator {
+    public constructor(value: number) {
+        super(value)
+    }
+
+    public power(value: number): this {
+        this.value **= value
+        return this
+    }
+}
+
+const op: NewOperator = new NewOperator(2)
+op.power(3).multiply(2).power(3) // 4096
