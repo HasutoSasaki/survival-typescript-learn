@@ -170,3 +170,11 @@ class NewOperator extends Operator {
 
 const op: NewOperator = new NewOperator(2)
 op.power(3).multiply(2).power(3) // 4096
+
+
+// instanceof演算子
+class ClassA { }
+class ClassB { }
+const a = new ClassA();
+console.log(a instanceof ClassA); //true
+console.log(a instanceof ClassB); //false
