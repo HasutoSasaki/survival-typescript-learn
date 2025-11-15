@@ -178,3 +178,9 @@ class ClassB { }
 const a = new ClassA();
 console.log(a instanceof ClassA); //true
 console.log(a instanceof ClassB); //false
+
+// 継承とinstanceof
+class Parent { }
+class Child extends Parent { }
+const child = new Child();
+console.log(child instanceof Parent); // true
