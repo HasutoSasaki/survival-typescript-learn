@@ -189,3 +189,9 @@ console.log(child instanceof Parent); // true
 if (!(Parent instanceof ClassA)) {
     // Parent が ClassA ではないときの処理
 }
+
+// 抽象クラスと instanceof
+abstract class AbstractClass { }
+class ConcreteClass extends AbstractClass { }
+const obj8 = new ConcreteClass();
+console.log(obj8 instanceof AbstractClass)
