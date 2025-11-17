@@ -195,3 +195,23 @@ abstract class AbstractClass { }
 class ConcreteClass extends AbstractClass { }
 const obj8 = new ConcreteClass();
 console.log(obj8 instanceof AbstractClass)
+
+// 公称型クラス
+class UserId2 {
+    private readonly id: string
+
+    constructor(id: string) {
+        this.id = id
+    }
+}
+
+class GroupId {
+    private readonly id: string;
+
+    constructor(id: string) {
+        this.id = id
+    }
+}
+
+const userId2: UserId2 = new GroupId("...") // idプロパティがプライベートなため、相互代入は不可能となる
+// この方法はフィールドに限らず、プライベートメソッドやprotectedプロパティでも同じ効果があります
