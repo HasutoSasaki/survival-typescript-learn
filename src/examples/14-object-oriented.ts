@@ -184,3 +184,8 @@ class Parent { }
 class Child extends Parent { }
 const child = new Child();
 console.log(child instanceof Parent); // true
+
+// instanceofの反転
+if (!(Parent instanceof ClassA)) {
+    // Parent が ClassA ではないときの処理
+}
