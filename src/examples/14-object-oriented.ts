@@ -215,3 +215,30 @@ class GroupId {
 
 const userId2: UserId2 = new GroupId("...") // idプロパティがプライベートなため、相互代入は不可能となる
 // この方法はフィールドに限らず、プライベートメソッドやprotectedプロパティでも同じ効果があります
+
+// 抽象クラス
+// abstract をつけることで抽象クラスを表現できる。new 演算子を使ったインスタンス化が無効となる
+abstract class Food {
+    constructor(protected name: string, protected calorie: number) { }
+    showDebug() {
+        console.log(`name = ${this.name} `)
+        console.log(`calorie = ${this.calorie}kcal `)
+    }
+    abstract keepRefrigerated(): boolean;
+}
+
+class Meat extends Food {
+    keepRefrigerated(): boolean {
+        return true
+    }
+}
+
+// javascriptにトランスパイルすると、abstract 修飾子が外され、ただのクラスとしてコンパイルされる
+abstract class AbstractClass2 {
+    concreteMethod(): void { }
+    abstract abstractMethod(): void
+}
+// ↓ コンパイル結果
+// class AbstractClass2 {
+//     concreteMethod() { }
+// }
