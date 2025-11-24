@@ -50,3 +50,21 @@ const teacher: Teacher = {
     age: 30,
     students: [studentA]
 }
+
+// プロパティを部分型に宣言しおなす
+// リテラル型に変更
+interface WebPage {
+    path: string
+}
+
+interface IndexPage extends WebPage {
+    path: "/";
+}
+
+// ユニオン型
+interface Person3 {
+    age: number | undefined
+}
+interface Student2 extends Person3 {
+    age: number;
+}
