@@ -20,3 +20,8 @@ class Developer implements Human, Programmer {
         console.log("カタカタ")
     }
 }
+
+// インターフェースのreadonly 修飾子
+interface SomeInterface {
+    readonly field: number;
+}
