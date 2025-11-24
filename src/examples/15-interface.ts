@@ -25,3 +25,28 @@ class Developer implements Human, Programmer {
 interface SomeInterface {
     readonly field: number;
 }
+
+// インターフェースの継承
+interface Person2 {
+    name: string;
+    age: number;
+}
+interface Student extends Person2 {
+    grade: number; // 学年
+}
+
+interface Teacher extends Person2 {
+    students: Student[]; //生徒
+}
+
+const studentA: Student = {
+    name: "花子",
+    age: 10,
+    grade: 3
+}
+
+const teacher: Teacher = {
+    name: "太郎",
+    age: 30,
+    students: [studentA]
+}
